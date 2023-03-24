@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run test && npm run build",
-    "build": "npm run clean && tsc && sed -i \"\" \"1s/ts-node/node/\" dist/cli.js && chmod +x dist/cli.js && rm dist/cli.d.ts && VERSION=\"$(node -p 'require(\"./package.json\").version')\" && echo \"module.exports = '$VERSION';\" > dist/version.js",
+    "build": "npm run clean && tsc && sed -i '' '1s/ts-node/node/' dist/cli.js && chmod +x dist/cli.js && rm dist/cli.d.ts && VERSION=\"$(node -p 'require(\"./package.json\").version')\" && echo \"module.exports = '$VERSION';\" > dist/version.js",
     "pkg": "pkg dist/cli.js --output dist/antelope-abi2rs",
     "test": "tslint -p tsconfig.json -c tslint.json",
     "lint": "tslint -p tsconfig.json -c tslint.json -t stylish --fix",

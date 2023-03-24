@@ -1,0 +1,36 @@
+{
+  "name": "antelope-abi2rs",
+  "version": "0.1.1",
+  "description": "Generates Rust type defenitions from Antelope ABI files",
+  "author": "Yaro Shkvorets",
+  "license": "MIT",
+  "index": "dist/index.js",
+  "bin": {
+    "antelope-abi2rs": "dist/cli.js"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pinax-network/antelope-abi2rs"
+  },
+  "scripts": {
+    "prepublishOnly": "make test && make dist",
+    "build": "tsc"
+  },
+  "keywords": [
+    "antelope",
+    "abi",
+    "rust"
+  ],
+  "dependencies": {
+    "argparse": "^1.0.10"
+  },
+  "devDependencies": {
+    "@types/argparse": "^1.0.10",
+    "@types/node": "^18.15.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}

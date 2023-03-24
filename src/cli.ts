@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 import {ArgumentParser} from "argparse"
 import {createReadStream, createWriteStream} from "fs"

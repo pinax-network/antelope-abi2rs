@@ -16,7 +16,7 @@
     "url": "https://github.com/pinax-network/antelope-abi2rs"
   },
   "scripts": {
-    "prepublishOnly": "npm run test && npm run build",
+    "prepublishOnly": "npm run test && npm run build && chmod +x dist/cli.js",
     "build": "npm run clean && tsc",
     "pkg": "pkg dist/cli.js --output dist/antelope-abi2rs",
     "test": "tslint -p tsconfig.json -c tslint.json",

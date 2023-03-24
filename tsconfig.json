@@ -19,11 +19,15 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
+    "declaration": true,
     "outDir": "./dist",
     "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "strict": false
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
   },
   "include": [
     "src/*.ts"

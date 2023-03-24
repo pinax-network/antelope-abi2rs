@@ -10,10 +10,10 @@ export interface Type {
 export interface Struct {
     name: string
     base: string
-    fields: Array<{
+    fields: {
         name: string
         type: string,
-    }>
+    }[]
 }
 
 export interface Action {

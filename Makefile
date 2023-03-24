@@ -17,7 +17,6 @@ lint: node_modules
 
 dist: $(SRC_FILES) node_modules
 	tsc -p tsconfig.json && \
-	sed -i "" "1s/ts-node/node/" dist/cli.js && \
 	chmod +x dist/cli.js && \
 	rm dist/cli.d.ts && \
 	VERSION="$$(node -p 'require("./package.json").version')"; \

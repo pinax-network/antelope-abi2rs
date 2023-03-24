@@ -1,27 +1,10 @@
-// {
-//   "compilerOptions": {
-//     "declaration": true,
-//     "lib": ["es2015"],
-//     "module": "commonjs",
-//     "moduleResolution": "node",
-//     "noImplicitAny": true,
-//     "noImplicitThis": true,
-//     "outDir": "dist",
-//     "strictNullChecks": true,
-//     "target": "es6"
-//   },
-//   "include": [
-//     "src/*.ts"
-//   ]
-// }
-
 {
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
-    "declaration": true,
+    "declaration": false,
+    "sourceMap": false,
     "outDir": "./dist",
-    "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strictNullChecks": true,

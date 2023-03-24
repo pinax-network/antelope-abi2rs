@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run test && npm run build",
-    "build": "npm run clean && tsup src/* && VERSION=\"$(node -p 'require(\"./package.json\").version')\" && echo \"module.exports = '$VERSION';\" > dist/version.js",
+    "build": "npm run clean && tsc",
     "pkg": "pkg dist/cli.js --output dist/antelope-abi2rs",
     "test": "tslint -p tsconfig.json -c tslint.json",
     "lint": "tslint -p tsconfig.json -c tslint.json -t stylish --fix",
@@ -40,7 +40,6 @@
     "@types/node": "^18.15.6",
     "pkg": "^5.8.1",
     "tslint": "^6.1.3",
-    "tsup": "^6.7.0",
     "typescript": "^5.0.2"
   }
 }

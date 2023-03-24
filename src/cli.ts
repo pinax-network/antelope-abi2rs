@@ -15,8 +15,6 @@ interface Arguments {
     snake_case: boolean
     use_tabs: boolean
     output?: string
-    export: boolean
-    namespace?: string
 }
 
 const parser = new ArgumentParser({version, addHelp: true})
@@ -41,17 +39,6 @@ parser.addArgument(["-t", "--use-tabs"], {
     action: "storeTrue",
     defaultValue: false,
     help: "Use tabs instead of spaces for indentation.",
-})
-
-parser.addArgument(["-e", "--export"], {
-    action: "storeTrue",
-    defaultValue: false,
-    help: "Whether to export interfaces and types.",
-})
-
-parser.addArgument(["-N", "--namespace"], {
-    help: "Namespace to wrap interfaces in (implies --export).",
-    type: String,
 })
 
 const group = parser.addMutuallyExclusiveGroup()

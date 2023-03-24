@@ -1,6 +1,6 @@
 {
   "name": "antelope-abi2rs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Generates Rust type defenitions from Antelope ABI files",
   "author": "Yaro Shkvorets",
   "license": "MIT",

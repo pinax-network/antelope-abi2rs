@@ -1,6 +1,6 @@
 {
   "name": "antelope-abi2rs",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Generates Rust type defenitions from Antelope ABI files",
   "author": "Yaro Shkvorets",
   "license": "MIT",
@@ -17,7 +17,8 @@
   },
   "scripts": {
     "prepublishOnly": "npm run test && npm run build",
-    "build": "npm run clean && tsc && chmod +x dist/cli.js && rm dist/cli.d.ts && VERSION=\"$(node -p 'require(\"./package.json\").version')\" && echo \"module.exports = '$VERSION';\" > dist/version.js",
+    "build": "npm run clean && tsc && sed -i \"\" \"1s/ts-node/node/\" dist/cli.js && chmod +x dist/cli.js && rm dist/cli.d.ts && VERSION=\"$(node -p 'require(\"./package.json\").version')\" && echo \"module.exports = '$VERSION';\" > dist/version.js",
+    "pkg": "pkg dist/cli.js --output dist/antelope-abi2rs",
     "test": "tslint -p tsconfig.json -c tslint.json",
     "lint": "tslint -p tsconfig.json -c tslint.json -t stylish --fix",
     "clean": "rm -rf dist/",
@@ -37,7 +38,8 @@
   "devDependencies": {
     "@types/argparse": "^1.0.10",
     "@types/node": "^18.15.6",
-    "ts-node": "^10.9.1",
+    "pkg": "^5.8.1",
+    "tslint": "^6.1.3",
     "typescript": "^5.0.2"
   }
 }

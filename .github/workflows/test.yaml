@@ -22,9 +22,6 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install TSLint globally
-        run: npm install -g tslint
-
       - name: Install deps
         run: npm ci
 

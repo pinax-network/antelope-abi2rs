@@ -61,3 +61,8 @@ export interface Declaration {
     abi_extensions?: Extension[]
     variants?: Variant[]
 }
+
+export interface GetAbiDeclaration {
+    account_name: string
+    abi: Declaration
+}

@@ -95,7 +95,9 @@ input.on("data", (chunk) => { chunks.push(chunk as Buffer) })
 input.on("end", () => {
     try {
         const data = Buffer.concat(chunks)
-        const abi = JSON.parse(data.toString("utf8"))
+        let abi = JSON.parse(data.toString("utf8"))
+        if (!abi.version) abi = abi.abi
+        if (!abi.version) throw new Error("Invalid ABI")
         const lines = transform(abi, {
             indent,
             typeFormatter,

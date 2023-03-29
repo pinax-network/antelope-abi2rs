@@ -7,6 +7,7 @@ interface BuiltIn {
     definition?: string
 }
 
+// https://github.com/AntelopeIO/leap/blob/e22629623adad7ec44a25534b6006bc62f2ce8b1/libraries/chain/abi_serializer.cpp#L90
 const builtins: BuiltIn[] = [
     {name: "asset", type: "String"},
     {name: "name", type: "String"},
@@ -20,7 +21,6 @@ const builtins: BuiltIn[] = [
     {name: "checksum256", type: "String"},
     {name: "checksum512", type: "String"},
 
-    {name: "private_key", type: "String"},
     {name: "public_key", type: "String"},
     {name: "signature", type: "String"},
 
@@ -34,12 +34,14 @@ const builtins: BuiltIn[] = [
     {name: "int8", type: "i8"},
     {name: "int16", type: "i16"},
     {name: "int32", type: "i32"},
+    {name: "varint32", type: "i32"},
     {name: "int64", type: "i64"},
     {name: "int128", type: "String"},
 
     {name: "uint8", type: "u8"},
     {name: "uint16", type: "u16"},
     {name: "uint32", type: "u32"},
+    {name: "varuint32", type: "u32"},
     {name: "uint64", type: "u64"},
     {name: "uint128", type: "String"},
 
@@ -52,7 +54,7 @@ const builtins: BuiltIn[] = [
 const nonPrimitives: BuiltIn[] = [
     { name: "extended_asset", type: "ExtendedAsset", definition:
 `pub struct ExtendedAsset {
-    pub quantity: Name,
+    pub quantity: Asset,
     pub contract: Name,
 }`
     },

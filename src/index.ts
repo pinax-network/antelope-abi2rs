@@ -85,11 +85,16 @@ function macrosCalls(type: string) {
 function resolveOptional(type: string) {
     let name = type
     let optional = false
+    let nullable = false
     if (name[name.length - 1] === "?") {
         optional = true
         name = name.slice(0, -1)
     }
-    return {optional, name}
+    if (name[name.length - 1] === "$") {
+        nullable = true
+        name = name.slice(0, -1)
+    }
+    return {optional, nullable, name}
 }
 
 const RustKeywords = ["type", "pub", "struct", "use", "enum", "impl", "for", "self", "super", "crate", "mod", "fn", "const", "static", "trait", "unsafe", "extern"]
@@ -117,7 +122,7 @@ export default function transform(abi: Declaration, options: TransformOptions) {
     const usedNonPrimitives = new Set<BuiltIn>()
     let out: string[] = ["", macros]
     const resolveType = (type: string) => {
-        const {name, optional} = resolveOptional(type)
+        const {name, optional, nullable} = resolveOptional(type)
 
         const isArray = name.includes("[]")
         const typeName = name.replace("[]", "")
@@ -127,10 +132,8 @@ export default function transform(abi: Declaration, options: TransformOptions) {
         const nonprim = nonPrimitives.find((t) => t.name === typeName)
         if (nonprim) usedNonPrimitives.add(nonprim)
 
-        const rv = isArray ? `Vec<${typeFormatter(typeName)}>` : typeFormatter(typeName)
-        // if (optional) {
-        //     rv += ' | undefined'
-        // }
+        let rv = isArray ? `Vec<${typeFormatter(typeName)}>` : typeFormatter(typeName)
+
         return rv
     }
 
@@ -143,7 +146,7 @@ export default function transform(abi: Declaration, options: TransformOptions) {
     out.push("")
 
     for (const variant of abi.variants || []) {
-        bail("variants are not supported yet")
+        process.stderr.write(`Variants are not supported, skipping ${variant.name}\n`)
         // const types = variant.types.map((t) => `['${t}', ${resolveType(t)}]`)
         // out.push(`type ${typeFormatter(variant.name)} = ${types.join(' | ')}`)
     }
@@ -151,16 +154,18 @@ export default function transform(abi: Declaration, options: TransformOptions) {
     out.push("")
 
     for (const struct of abi.structs || []) {
-        out.push(structTags)
-        const def = `pub struct ${typeFormatter(struct.name)}`
         if (struct.base && struct.base.length > 0) {
-            bail("structs with base are not supported yet")
+            process.stderr.write(`Variants are not supported, skipping ${struct.name} with base ${struct.base}\n`)
+            continue
             // def += ` extends ${typeFormatter(struct.base)}`
         }
+        out.push(structTags)
+        const def = `pub struct ${typeFormatter(struct.name)}`
         out.push(def + " {")
         for (const type of struct.fields) {
-            const {name, optional} = resolveOptional(type.type)
-            out.push(`${indent}pub ${resolveVarName(type.name)}${optional ? "" : ""}: ${resolveType(name)},`)
+            const {name, optional, nullable} = resolveOptional(type.type)
+            const typeValue = optional || nullable ? `Option<${resolveType(name)}>` : resolveType(name)
+            out.push(`${indent}pub ${resolveVarName(type.name)}: ${typeValue},`)
         }
         out.push("}")
         out.push(macrosCalls(typeFormatter(struct.name)))

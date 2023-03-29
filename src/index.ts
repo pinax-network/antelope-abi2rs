@@ -15,7 +15,7 @@ const builtins: BuiltIn[] = [
 
     {name: "bool", type: "bool"},
     {name: "string", type: "String"},
-    {name: 'bytes', type: 'String'},
+    {name: "bytes", type: "String"},
 
     {name: "checksum160", type: "String"},
     {name: "checksum256", type: "String"},
@@ -134,7 +134,7 @@ export default function transform(abi: Declaration, options: TransformOptions) {
         const nonprim = nonPrimitives.find((t) => t.name === typeName)
         if (nonprim) usedNonPrimitives.add(nonprim)
 
-        let rv = isArray ? `Vec<${typeFormatter(typeName)}>` : typeFormatter(typeName)
+        const rv = isArray ? `Vec<${typeFormatter(typeName)}>` : typeFormatter(typeName)
 
         return rv
     }

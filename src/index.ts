@@ -14,7 +14,7 @@ const builtins: BuiltIn[] = [
 
     {name: "bool", type: "bool"},
     {name: "string", type: "String"},
-    // {name: 'bytes', type: 'string | number[] | Uint8Array'},
+    {name: 'bytes', type: 'String'},
 
     {name: "checksum160", type: "String"},
     {name: "checksum256", type: "String"},

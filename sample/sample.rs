@@ -20,7 +20,6 @@ pub struct ExtendedAsset {
     pub contract: Name,
 }
 
-
 macro_rules! impl_try_from_str {
     ($type:ty) => {
         impl TryFrom<&str> for $type {
@@ -32,7 +31,6 @@ macro_rules! impl_try_from_str {
         }
     };
 }
-
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 #[serde(deny_unknown_fields)]

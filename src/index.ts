@@ -64,7 +64,7 @@ const nonPrimitives: BuiltIn[] = [
 
 const imports = `use serde::{Deserialize, Serialize};`
 
-const structTags = `#[derive(Serialize, Deserialize, Debug, PartialEq)]
+const structTags = `#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(deny_unknown_fields)]`
 
 const macros = `macro_rules! impl_try_from_str {

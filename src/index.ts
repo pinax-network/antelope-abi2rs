@@ -121,7 +121,7 @@ export default function transform(abi: Declaration, options: TransformOptions) {
     const {indent, typeFormatter} = options
     const usedBuiltins = new Set<BuiltIn>()
     const usedNonPrimitives = new Set<BuiltIn>()
-    let out: string[] = ["", macros]
+    const out: string[] = ["", macros]
     const resolveType = (type: string) => {
         const {name, optional, nullable} = resolveOptional(type)
 

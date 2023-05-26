@@ -157,7 +157,7 @@ for trx in block.all_transaction_traces() {
 
         match abi::Transfer::try_from(action_trace.json_data.as_str()) {
             Ok(transfer) => {
-                log::info("Transfer! {}", transfer)
+                log::info!("Transfer! {:?}", transfer)
             }
             Err(_) => continue,
         }

@@ -43,7 +43,6 @@ Optional arguments:
   -s, --snake-case      Format types using snake_case.
 ```
 
-
 Example
 -------
 
@@ -139,6 +138,13 @@ pub struct Transfer {
     pub memo: String,
 }
 impl_try_from_str!(Transfer);
+```
+
+Stdin
+-----
+
+```
+eosc -u https://eos.greymass.com get abi eosio.evm | antelope-abi2rs src/abi.rs
 ```
 
 Usage

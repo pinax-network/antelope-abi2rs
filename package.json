@@ -1,6 +1,6 @@
 {
   "name": "antelope-abi2rs",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Generate Rust type defenitions from Antelope ABI files",
   "author": "Yaro Shkvorets",
   "license": "MIT",
@@ -18,7 +18,7 @@
   "scripts": {
     "prepublishOnly": "npm run test && npm run build && chmod +x dist/cli.js",
     "build": "npm run clean && tsc",
-    "pkg": "pkg dist/cli.js --output dist/antelope-abi2rs",
+    "pkg": "npm run distclean && npm run build && pkg dist/cli.js --output dist/antelope-abi2rs",
     "test": "tslint -p tsconfig.json -c tslint.json",
     "lint": "tslint -p tsconfig.json -c tslint.json -t stylish --fix",
     "clean": "rm -rf dist/",

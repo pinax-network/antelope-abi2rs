@@ -43,7 +43,6 @@ Optional arguments:
   -s, --snake-case      Format types using snake_case.
 ```
 
-
 Example
 -------
 
@@ -141,6 +140,13 @@ pub struct Transfer {
 impl_try_from_str!(Transfer);
 ```
 
+Stdin
+-----
+
+```
+eosc -u https://eos.greymass.com get abi eosio.evm | antelope-abi2rs src/abi.rs
+```
+
 Usage
 ------
 ```rust
@@ -151,7 +157,7 @@ for trx in block.all_transaction_traces() {
 
         match abi::Transfer::try_from(action_trace.json_data.as_str()) {
             Ok(transfer) => {
-                log::info("Transfer! {}", transfer)
+                log::info!("Transfer! {:?}", transfer)
             }
             Err(_) => continue,
         }

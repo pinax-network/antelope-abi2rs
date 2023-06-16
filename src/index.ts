@@ -210,7 +210,7 @@ export default function transform(abi: Declaration, options: TransformOptions) {
         out.push(structTags)
         const def = `pub struct ${typeFormatter(struct.name)}`
         out.push(def + " {")
-        for (const type of struct.fields) {
+        for (const type of struct.fields ?? []) {
             const tags = resolveTags(type.type)
             const {name, optional, nullable} = resolveOptional(type.type)
             const typeValue = optional || nullable ? `Option<${resolveType(name)}>` : resolveType(name)

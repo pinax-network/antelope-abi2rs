@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 import {ArgumentParser} from "argparse"
-import {createReadStream, createWriteStream} from "fs"
+import {createReadStream, createWriteStream, mkdirSync} from "fs"
 
 import transform from "./index"
 import version from "./version"
+import path from "path"
 
 interface Arguments {
     input?: string
@@ -85,6 +86,7 @@ const indent = indentChar.repeat(args.indent)
 
 const input = args.input ? createReadStream(args.input) : process.stdin
 const output: any = args.output ? createWriteStream(args.output) : process.stdout
+if (args.output) mkdirSync(path.dirname(args.output), { recursive: true });
 
 const chunks: Buffer[] = []
 input.on("error", (error) => {

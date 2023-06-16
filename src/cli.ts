@@ -86,7 +86,7 @@ const indent = indentChar.repeat(args.indent)
 
 const input = args.input ? createReadStream(args.input) : process.stdin
 const output: any = args.output ? createWriteStream(args.output) : process.stdout
-if (args.output) mkdirSync(path.dirname(args.output), { recursive: true });
+if (args.output) mkdirSync(path.dirname(args.output), { recursive: true })
 
 const chunks: Buffer[] = []
 input.on("error", (error) => {

@@ -17,15 +17,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: 24
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install deps
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Build and Test
         run: |
-          npm run build
-          npm run test
+          bun run build
+          bun run test
